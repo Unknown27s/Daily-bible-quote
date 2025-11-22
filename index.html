@@ -68,13 +68,18 @@
     }
     </script>
 
-  <!-- Google AdSense - Auto Ads (will be dynamically loaded) -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" crossorigin="anonymous"></script>
+  <!-- Google AdSense - Auto Ads with Publisher ID -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7627314206553844"
+    crossorigin="anonymous"></script>
 
-  <!-- AdSense Auto Ads Script - Enable after adding your Publisher ID -->
+  <!-- AdSense Auto Ads Script -->
   <script>
-    // AdSense configuration will be loaded dynamically
     window.adsbygoogle = window.adsbygoogle || [];
+    // Enable Auto Ads
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-7627314206553844",
+      enable_page_level_ads: true
+    });
   </script>
 </head>
 

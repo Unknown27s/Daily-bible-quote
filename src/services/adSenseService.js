@@ -6,8 +6,8 @@
 class AdSenseService {
     constructor() {
         this.config = {
-            publisherId: 'ca-pub-YOUR_ADSENSE_CLIENT_ID', // Replace with your AdSense Publisher ID
-            enabled: false, // Set to true after configuring your Publisher ID
+            publisherId: 'ca-pub-7627314206553844', // Your actual AdSense Publisher ID
+            enabled: true, // Enabled with your Publisher ID
             autoAds: true, // Enable automatic ad placement
             testMode: process.env.NODE_ENV === 'development'
         }

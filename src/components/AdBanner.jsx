@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 
-// AdSense Configuration - Replace with your actual Publisher ID
+// AdSense Configuration - Configured with actual Publisher ID
 const ADSENSE_CONFIG = {
-    publisherId: 'ca-pub-YOUR_ADSENSE_CLIENT_ID', // Replace this with your actual AdSense Publisher ID
-    enabled: false // Set to true after adding your Publisher ID
+    publisherId: 'ca-pub-7627314206553844', // Your actual AdSense Publisher ID
+    enabled: true // Enabled with your Publisher ID
 }
 
 export function AdBanner({
