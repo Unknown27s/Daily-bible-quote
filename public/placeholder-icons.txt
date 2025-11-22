@@ -1,0 +1,2 @@
+<!-- Placeholder for favicon - Replace with actual .ico file -->
+<!-- For now, use the SVG as favicon by updating index.html -->

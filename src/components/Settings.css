@@ -1,0 +1,252 @@
+.settings {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.settings h2 {
+    color: var(--text-primary);
+    margin-bottom: 2rem;
+    font-size: 1.75rem;
+}
+
+.settings-section {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.settings-section h3 {
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+}
+
+.setting-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.setting-item:last-child {
+    border-bottom: none;
+}
+
+.setting-info {
+    flex: 1;
+}
+
+.setting-info label {
+    display: block;
+    color: var(--text-primary);
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.setting-description {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    margin: 0;
+}
+
+/* Toggle Switch */
+.toggle {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 28px;
+}
+
+.toggle input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 28px;
+}
+
+.toggle-slider:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+}
+
+.toggle input:checked+.toggle-slider {
+    background-color: var(--primary);
+}
+
+.toggle input:checked+.toggle-slider:before {
+    transform: translateX(22px);
+}
+
+/* Time Picker */
+.time-picker input[type="time"] {
+    padding: 0.5rem 1rem;
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    background: var(--input-bg);
+    color: var(--text-primary);
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.time-picker input[type="time"]:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+/* Source Selector */
+.source-selector {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.radio-option {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.radio-option:hover {
+    border-color: var(--primary);
+    background: var(--button-hover);
+}
+
+.radio-option input[type="radio"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+
+.radio-option input[type="radio"]:checked+span {
+    color: var(--primary);
+    font-weight: 600;
+}
+
+.radio-option span {
+    font-size: 1rem;
+    color: var(--text-primary);
+}
+
+/* About Section */
+.about-info {
+    color: var(--text-secondary);
+    line-height: 1.8;
+}
+
+.about-info p {
+    margin: 0.5rem 0;
+}
+
+.about-info strong {
+    color: var(--text-primary);
+}
+
+.api-credit {
+    font-size: 0.875rem;
+    margin-top: 1rem;
+}
+
+.api-credit a {
+    color: var(--primary);
+    text-decoration: none;
+}
+
+.api-credit a:hover {
+    text-decoration: underline;
+}
+
+/* Danger Button */
+.danger-button {
+    background: #ef4444;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.danger-button:hover {
+    background: #dc2626;
+}
+
+/* API Key Input */
+.api-key-input {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.api-key-input input[type="password"],
+.api-key-input input[type="text"] {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    background: var(--input-bg);
+    color: var(--text-primary);
+    font-size: 1rem;
+    font-family: monospace;
+}
+
+.api-key-input input:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+.api-key-input .input-status {
+    font-size: 1.25rem;
+}
+
+.setting-description a {
+    color: var(--primary);
+    text-decoration: none;
+}
+
+.setting-description a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 640px) {
+    .setting-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .time-picker {
+        width: 100%;
+    }
+
+    .time-picker input[type="time"] {
+        width: 100%;
+    }
+}
