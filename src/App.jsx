@@ -6,6 +6,7 @@ import { AdBanner } from './components/AdBanner'
 import { quoteService } from './services/quoteService'
 import { notificationService } from './services/notificationService'
 import { storageService } from './services/storageService'
+import { adSenseService } from './services/adSenseService'
 import './App.css'
 
 function App() {
@@ -33,8 +34,11 @@ function App() {
             const savedFavorites = storageService.get('favorites')
             if (savedFavorites) setFavorites(savedFavorites)
 
-            // Initialize notifications
+            // Initialize services
             notificationService.initialize()
+
+            // Initialize AdSense (will only work if properly configured)
+            await adSenseService.initialize()
 
             // Load today's quote
             await loadTodaysQuote()
@@ -161,8 +165,13 @@ function App() {
                             onShare={() => handleShare(quote)}
                             onRefresh={handleNewQuote}
                         />
-                        {/* Ad Banner - appears after quote */}
-                        <AdBanner adSlot="1234567890" format="auto" />
+                        {/* Primary Ad Banner - appears after quote */}
+                        <AdBanner
+                            adSlot="auto"
+                            format="rectangle"
+                            style={{ maxWidth: '400px', margin: '20px auto' }}
+                            className="primary-ad"
+                        />
                     </>
                 )}
 
@@ -173,11 +182,22 @@ function App() {
                 )}
 
                 {view === 'history' && (
-                    <QuoteHistory
-                        favorites={favorites}
-                        onFavorite={toggleFavorite}
-                        onShare={handleShare}
-                    />
+                    <>
+                        <QuoteHistory
+                            favorites={favorites}
+                            onFavorite={toggleFavorite}
+                            onShare={handleShare}
+                        />
+                        {/* Ad in favorites section */}
+                        {favorites.length > 0 && (
+                            <AdBanner
+                                adSlot="auto"
+                                format="horizontal"
+                                style={{ marginTop: '30px' }}
+                                className="favorites-ad"
+                            />
+                        )}
+                    </>
                 )}
 
                 {view === 'settings' && (

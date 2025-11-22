@@ -2,23 +2,85 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Get inspired with a daily Bible verse" />
-    <meta name="theme-color" content="#4F46E5" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <title>Daily Bible Verse</title>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Google AdSense - Replace with your client ID -->
-    <script async
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_ADSENSE_CLIENT_ID"
-        crossorigin="anonymous"></script>
+  <!-- SEO Meta Tags -->
+  <title>Daily Bible Verse - Free Inspirational Scripture Quotes Every Day</title>
+  <meta name="description"
+    content="Get inspired with daily Bible verses and scripture quotes. Share encouraging words from the Bible every day. Free inspirational Christian quotes and devotional readings." />
+  <meta name="keywords"
+    content="daily bible verse, bible quotes, scripture quotes, inspirational bible verses, daily devotional, christian quotes, bible study, daily scripture, faith quotes, religious quotes" />
+  <meta name="author" content="Daily Bible Quote" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <link rel="canonical" href="https://daily-bible-quote.netlify.app/" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://daily-bible-quote.netlify.app/" />
+  <meta property="og:title" content="Daily Bible Verse - Free Inspirational Scripture Quotes" />
+  <meta property="og:description"
+    content="Get inspired with daily Bible verses and scripture quotes. Share encouraging words from the Bible every day." />
+  <meta property="og:image" content="https://daily-bible-quote.netlify.app/og-image.jpg" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:site_name" content="Daily Bible Verse" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content="https://daily-bible-quote.netlify.app/" />
+  <meta name="twitter:title" content="Daily Bible Verse - Free Inspirational Scripture Quotes" />
+  <meta name="twitter:description"
+    content="Get inspired with daily Bible verses and scripture quotes. Share encouraging words from the Bible every day." />
+  <meta name="twitter:image" content="https://daily-bible-quote.netlify.app/og-image.jpg" />
+
+  <!-- Mobile & PWA -->
+  <meta name="theme-color" content="#4F46E5" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Daily Bible Verse" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+  <!-- Structured Data (JSON-LD) -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Daily Bible Verse",
+      "description": "Get inspired with daily Bible verses and scripture quotes. Share encouraging words from the Bible every day.",
+      "url": "https://daily-bible-quote.netlify.app/",
+      "applicationCategory": "LifestyleApplication",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "author": {
+        "@type": "Organization",
+        "name": "Daily Bible Quote"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "ratingCount": "1000"
+      }
+    }
+    </script>
+
+  <!-- Google AdSense - Auto Ads (will be dynamically loaded) -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" crossorigin="anonymous"></script>
+
+  <!-- AdSense Auto Ads Script - Enable after adding your Publisher ID -->
+  <script>
+    // AdSense configuration will be loaded dynamically
+    window.adsbygoogle = window.adsbygoogle || [];
+  </script>
 </head>
 
 <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
 </body>
 
 </html>

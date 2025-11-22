@@ -9,7 +9,8 @@
         "preview": "vite preview",
         "android": "npm run build && npx cap sync android && npx cap open android",
         "ios": "npm run build && npx cap sync ios && npx cap open ios",
-        "sync": "npm run build && npx cap sync"
+        "sync": "npm run build && npx cap sync",
+        "configure-adsense": "node configure-adsense.js"
     },
     "dependencies": {
         "@capacitor/android": "^5.5.1",
