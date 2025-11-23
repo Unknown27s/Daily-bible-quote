@@ -36,12 +36,16 @@ jobs:
     - name: Setup Android SDK
       uses: android-actions/setup-android@v2
       
-    - name: Ensure Android Platform Exists
+    - name: Verify Android Platform
       run: |
-        if [ ! -d "./android" ]; then
-          npx cap add android
+        echo "Checking Android platform..."
+        ls -la
+        if [ -d "./android" ]; then
+          echo "✅ Android platform exists"
+          ls -la android/
         else
-          echo "Android platform already exists"
+          echo "❌ Android platform missing - this should not happen"
+          exit 1
         fi
         
     - name: Sync Capacitor
@@ -49,8 +53,13 @@ jobs:
       
     - name: Build Android APK
       run: |
+        echo "Entering android directory..."
         cd android
+        echo "Contents of android directory:"
+        ls -la
+        echo "Making gradlew executable..."
         chmod +x gradlew
+        echo "Building APK..."
         ./gradlew assembleDebug
         
     - name: Upload APK
