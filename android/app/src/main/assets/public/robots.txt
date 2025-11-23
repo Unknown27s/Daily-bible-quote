@@ -1,0 +1,13 @@
+# Allow all search engines to crawl the site
+User-agent: *
+Allow: /
+
+# Disallow admin or config pages if any
+Disallow: /admin/
+Disallow: /_/
+
+# Sitemap location
+Sitemap: https://daily-bible-quote.netlify.app/sitemap.xml
+
+# Crawl delay (optional, helps prevent server overload)
+Crawl-delay: 1

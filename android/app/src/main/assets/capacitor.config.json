@@ -1,0 +1,15 @@
+{
+	"appId": "com.dailyquote.app",
+	"appName": "Daily Quote",
+	"webDir": "dist",
+	"server": {
+		"androidScheme": "https"
+	},
+	"plugins": {
+		"LocalNotifications": {
+			"smallIcon": "ic_stat_icon_config_sample",
+			"iconColor": "#4F46E5",
+			"sound": "beep.wav"
+		}
+	}
+}
