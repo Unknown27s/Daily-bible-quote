@@ -151,8 +151,9 @@ class QuoteService {
     }
 
     getMeaningForVerse(reference) {
-        // Extract book name from reference (e.g., "John 3:16" -> "John")
-        const bookMatch = reference.match(/^([A-Za-z]+)/)
+        // Extract book name from reference (handles "John 3:16", "1 Corinthians 13:4", "2 Peter 1:3")
+        // First try to match numbered books like "1 Corinthians" or "2 Peter"
+        let bookMatch = reference.match(/^\d?\s*([A-Za-z]+)/)
         if (bookMatch) {
             const bookName = bookMatch[1]
             return BOOK_MEANINGS[bookName] || 'Reflect on this verse and consider how it applies to your life. May it bring you wisdom, comfort, and inspiration for your daily walk.'
