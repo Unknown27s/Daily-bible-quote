@@ -4,6 +4,27 @@ import { API_CONFIG } from '../config/apiConfig'
 // External APIs
 const QUOTE_API = API_CONFIG.QUOTABLE_API
 
+// Bible verse meanings based on book themes
+const BOOK_MEANINGS = {
+    'Genesis': 'This verse from Genesis reminds us of God\'s creative power and the foundations of faith. It speaks to new beginnings and God\'s sovereign plan for creation.',
+    'Exodus': 'From Exodus, this passage reflects on God\'s deliverance and faithfulness. It reminds us that God leads His people out of bondage into freedom.',
+    'Psalms': 'This Psalm expresses heartfelt worship and trust in God. It teaches us to bring our joys, sorrows, and prayers before the Lord.',
+    'Proverbs': 'This proverb offers practical wisdom for daily living. It encourages us to seek understanding and walk in righteousness.',
+    'Isaiah': 'Isaiah\'s prophetic words point us to God\'s holiness and His plan of redemption. This verse calls us to trust in the Lord\'s perfect timing.',
+    'Matthew': 'From Matthew\'s Gospel, this verse teaches us about the Kingdom of Heaven and Jesus\'s teachings. It invites us to follow Christ more closely.',
+    'Mark': 'Mark presents Jesus as the suffering Servant. This passage reminds us of Christ\'s mission and calls us to faithful discipleship.',
+    'Luke': 'Luke emphasizes God\'s compassion for all people. This verse highlights the inclusive nature of God\'s love and salvation.',
+    'John': 'John reveals the divine nature of Christ. This verse deepens our understanding of eternal life and our relationship with God.',
+    'Acts': 'From Acts, this passage shows the power of the Holy Spirit in the early church. It inspires us to be bold witnesses for Christ.',
+    'Romans': 'Paul\'s letter to the Romans explains salvation by grace through faith. This verse clarifies the Gospel and our response to it.',
+    'Corinthians': 'This verse addresses Christian living and spiritual gifts. It guides us in building up the body of Christ with love.',
+    'Ephesians': 'Ephesians reveals our identity in Christ. This passage reminds us of the spiritual blessings we have as believers.',
+    'Philippians': 'Paul\'s letter of joy teaches us contentment. This verse encourages us to find our strength and satisfaction in Christ.',
+    'James': 'James emphasizes faith in action. This practical teaching calls us to demonstrate our faith through good works.',
+    'Peter': 'Peter writes about hope and perseverance. This verse strengthens us to stand firm in our faith during trials.',
+    'Revelation': 'Revelation unveils the ultimate victory of Christ. This passage reminds us of the glorious future that awaits believers.'
+}
+
 class QuoteService {
     async getDailyQuote() {
         try {
@@ -108,12 +129,16 @@ class QuoteService {
 
             if (!data.text) throw new Error('Bible verse payload empty')
 
+            const verseRef = data.reference || reference.replace(/\+/g, ' ')
+            const meaning = this.getMeaningForVerse(verseRef)
+
             const formatted = {
                 _id: `bible_${Date.now()}`,
                 content: data.text.trim(),
-                author: data.reference || reference.replace(/\+/g, ' '),
+                author: verseRef,
                 tags: ['bible', 'scripture'],
-                source: 'bible'
+                source: 'bible',
+                meaning: meaning
             }
             console.log('✅ Bible verse formatted:', formatted)
             return formatted
@@ -123,7 +148,20 @@ class QuoteService {
             // Fallback to general quote so user still sees something
             return await this.fetchGeneralQuote()
         }
-    } async getRandomQuote() {
+    }
+
+    getMeaningForVerse(reference) {
+        // Extract book name from reference (handles "John 3:16", "1 Corinthians 13:4", "2 Peter 1:3")
+        // First try to match numbered books like "1 Corinthians" or "2 Peter"
+        let bookMatch = reference.match(/^\d?\s*([A-Za-z]+)/)
+        if (bookMatch) {
+            const bookName = bookMatch[1]
+            return BOOK_MEANINGS[bookName] || 'Reflect on this verse and consider how it applies to your life. May it bring you wisdom, comfort, and inspiration for your daily walk.'
+        }
+        return 'Reflect on this verse and consider how it applies to your life. May it bring you wisdom, comfort, and inspiration for your daily walk.'
+    }
+
+    async getRandomQuote() {
         const source = this.getQuoteSource()
         const quote = source === 'bible' ? await this.fetchBibleVerse() : await this.fetchGeneralQuote()
         this.addToCachedQuotes(quote)
