@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react'
-import { QuoteCard } from './components/QuoteCard'
+import { useState, useEffect, useCallback } from 'react'
+import { QuoteFeed } from './components/QuoteFeed'
 import { Settings } from './components/Settings'
 import { QuoteHistory } from './components/QuoteHistory'
 import { AdBanner } from './components/AdBanner'
@@ -90,23 +90,22 @@ function App() {
         await quoteService.shareQuote(quoteToShare)
     }
 
-    const handleNewQuote = async () => {
-        setLoading(true)
-        try {
-            // Get a truly random quote (bypass cache)
-            const newQuote = await quoteService.getRandomQuote()
-            setQuote(newQuote)
-        } catch (error) {
-            console.error('Error loading new quote:', error)
-            // Try to load from cache
-            const cachedQuotes = storageService.get('cachedQuotes')
-            if (cachedQuotes && cachedQuotes.length > 0) {
-                setQuote(cachedQuotes[0])
+    const isQuoteFavorited = useCallback((quote) => {
+        return favorites.some(fav => fav._id === quote._id)
+    }, [favorites])
+
+    const loadMoreQuotes = useCallback(async (count = 3) => {
+        const newQuotes = []
+        for (let i = 0; i < count; i++) {
+            try {
+                const newQuote = await quoteService.getRandomQuote()
+                newQuotes.push(newQuote)
+            } catch (error) {
+                console.error('Error loading quote:', error)
             }
-        } finally {
-            setLoading(false)
         }
-    }
+        return newQuotes
+    }, [])
 
     if (loading) {
         return (
@@ -158,14 +157,14 @@ function App() {
             <main className="main">
                 {view === 'home' && quote && (
                     <>
-                        <QuoteCard
-                            quote={quote}
-                            isFavorited={favorites.some(fav => fav._id === quote._id)}
-                            onFavorite={() => toggleFavorite(quote)}
-                            onShare={() => handleShare(quote)}
-                            onRefresh={handleNewQuote}
+                        <QuoteFeed
+                            initialQuote={quote}
+                            onFavorite={toggleFavorite}
+                            isFavorited={isQuoteFavorited}
+                            onShare={handleShare}
+                            loadMoreQuotes={loadMoreQuotes}
                         />
-                        {/* Primary Ad Banner - appears after quote */}
+                        {/* Primary Ad Banner - appears after quote feed */}
                         <AdBanner
                             adSlot="auto"
                             format="rectangle"
